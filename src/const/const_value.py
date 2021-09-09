@@ -13,5 +13,6 @@ class webs(enum.Enum):
                       'Chrome/81.0.4044.138 '
                       'Safari/537.36 '
     }
+    WEB_NAMES = ('DIYI_BANZHU', 'BIQOOGE')
     WEB_INFO = {'DIYI_BANZHU': ('http://www.diyibanzhu.info/', 'nr_title', 'novelcontent', 'nr_page', '\xa0' * 4),
                 'BIQOOGE': ('https://www.biqooge.com/', 'bookname', 'content', 'bottem1', '\xa0' * 4)}

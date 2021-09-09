@@ -6,24 +6,24 @@ from bs4 import BeautifulSoup
 from src.const.const_value import webs
 
 
-class get_novel_main:
+class GetNovelMain:
     web_name = ''
     title = ''
     base_url = ''
-    subs = ''
+    sub = ''
     end = ''
     info = ()
 
-    def __init__(self, web_name, title, base_url, subs, ends):
+    def __init__(self, web_name, title, base_url, sub, end):
         self.web_name = web_name
         self.title = title
         self.base_url = base_url
-        self.subs = subs
-        self.ends = ends
+        self.sub = sub
+        self.ends = end
         self.info = webs.WEB_INFO[self.web_name]
 
     def get_novel(self):
-        html_url = self.base_url + self.subs
+        html_url = self.base_url + self.sub
         req = requests.get(url=html_url, headers=webs.HEADER)
         req.encoding = 'gbk'
         bf = BeautifulSoup(req.text, "lxml")
@@ -32,6 +32,7 @@ class get_novel_main:
         chapter = self.get_chapter(titles)
         return chapter, text[0].text.replace(self.info[-1], ''), self.get_next(self, bf)
 
+    # TODO 不同网站有不同的获得策略 且 还需要判断是否要手动加上章节判定
     @staticmethod
     def get_chapter(text):
         index = text.find('作品:')
