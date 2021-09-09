@@ -7,7 +7,7 @@
 import enum
 
 
-class webs(enum.Enum):
+class Webs(enum.Enum):
     HEADER = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) '
                       'Chrome/81.0.4044.138 '
