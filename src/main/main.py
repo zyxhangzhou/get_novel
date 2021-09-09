@@ -29,14 +29,18 @@ class GetNovelMain:
         bf = BeautifulSoup(req.text, "lxml")
         titles = bf.find_all('div', class_=self.info[1])
         text = bf.find_all('div', class_=self.info[2])
-        chapter = self.get_chapter(titles)
+        chapter = self.get_chapter(self, titles)
         return chapter, text[0].text.replace(self.info[-1], ''), self.get_next(self, bf)
 
     # TODO 不同网站有不同的获得策略 且 还需要判断是否要手动加上章节判定
     @staticmethod
-    def get_chapter(text):
-        index = text.find('作品:')
-        return text[0:index]
+    def get_chapter(self, titles):
+        if self.web_name == webs.WEB_NAMES[0]:
+            index = titles.text.find('作品:')
+            return titles.text[0:index]
+        elif self.web_name == webs.WEB_NAMES[1]:
+            return titles.find('h1').text
+        return ''
 
     @staticmethod
     def get_next(self, bf):
