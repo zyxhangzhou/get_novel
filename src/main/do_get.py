@@ -3,7 +3,7 @@
 # @File: do_get.py
 # @Time: 2021/9/6 17:37
 # @Author: zyxhangzhou
-from src.const.const_value import Webs
+from src.const.const_value import *
 from main import GetNovelMain
 import time
 import random
@@ -24,7 +24,7 @@ class SaveNovel:
         self.pre_check()
 
     def pre_check(self):
-        self.base_url = Webs.WEB_INFO[self.web_name][0]
+        self.base_url = WEB_INFO[self.web_name][0]
         self.sub = self.url_first_page[len(self.base_url):]
         self.end = self.process_ends(self, self.sub)
 
@@ -32,7 +32,7 @@ class SaveNovel:
     def process_ends(self, text: str):
         index_last_slash = text.rfind('/')
         end = text[0:index_last_slash + 1]
-        if self.web_name == Webs.WEB_NAMES[0]:
+        if self.web_name == WEB_NAMES[0]:
             end += '0.html'
         return end
 
